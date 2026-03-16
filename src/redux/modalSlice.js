@@ -9,7 +9,7 @@ const modalSlice = createSlice({
     },
     reducers: {
         openModal: (state, action) => {
-            // console.log(action.payload)
+            // console.log('action.type', action.type)
             state.isOpen = true
             state.modalData = action.payload
         },

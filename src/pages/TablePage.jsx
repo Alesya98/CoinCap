@@ -1,4 +1,3 @@
-//тут будет таблица криптовалют с информацией
 import { Table, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
@@ -83,7 +82,7 @@ const TablePage = () => {
             style={{ color: "red", border: "none", cursor: "pointer" }}
             onClick={(e) => {
               e.stopPropagation();
-              console.log("Клик по плюсу", record);
+              // console.log("Клик по плюсу", record);
              dispatch(openModal(record))
               
             }}
@@ -105,8 +104,8 @@ const TablePage = () => {
         rowKey="id"
         onRow={(record) => ({
           onClick: () => {
-            console.log("Клик по всей строке ", record.id);
-            navigate("/info");
+            // console.log("Клик по всей строке ", record.id);
+            navigate(`/info/${record.id}`);
           },
         })}
         pagination={{

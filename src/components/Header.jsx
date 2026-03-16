@@ -2,16 +2,19 @@ import { WalletOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { cionsSelector } from "../redux/coinsSlice";
 import { openPortfolio } from "../redux/modalSlice";
+import { resultSelector } from "../redux/portfolioSlice";
 
 export const Header = () => {
   const { items } = useSelector(cionsSelector);
   const popularCoins = items.slice(0, 3);
   const dispatch = useDispatch();
+  const resultPortfolio = useSelector(resultSelector);
+
 
   return (
     <div className="header">
       <div>
-        <p className="header-title">Популярные криптовалюты: </p>
+         <p className="header-title">Популярные криптовалюты: </p>
         <div className="header-list">
           {popularCoins.map((item) => (
             <div className="header-item" key={item.id}>
@@ -20,7 +23,7 @@ export const Header = () => {
             </div>
           ))}
         </div>
-      </div>
+   </div>
 
       <div
         className="header-total"
@@ -30,7 +33,7 @@ export const Header = () => {
         <WalletOutlined className="header-icon" />
         <div className="header-content">
           <p>Итого:</p>
-          <p>1617.24 USD</p>
+          <p>{resultPortfolio} USD</p>
         </div>
       </div>
     </div>
