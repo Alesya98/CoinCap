@@ -7,16 +7,14 @@ import { addTasks } from "../redux/portfolioSlice";
 export const ModalBuyCrypt = () => {
   const dispatсh = useDispatch();
   const { isOpen, modalData } = useSelector(modalSelector);
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
+
   const handleBuy = () => {
-      // console.log('передать данные')
-      
     if (amount > 0) {
-      //отправляем в портфель
       dispatсh(addTasks({ modalData, total: amount }));
       dispatсh(openPortfolio());
       dispatсh(closeModal());
-      setAmount(0);
+      setAmount("");
     }
   };
 
@@ -35,9 +33,11 @@ export const ModalBuyCrypt = () => {
         <h2>Введите количесиво:</h2>
         <InputNumber
           min={0}
+          type="number"
           style={{ width: "100%" }}
           value={amount}
           onChange={(val) => setAmount(val)}
+          placeholder="0"
         />
       </Modal>
     </>

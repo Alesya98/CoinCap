@@ -1,3 +1,7 @@
+button {
+  cursor: pointer;
+}
+
 /* Header */
 .header {
   display: flex;
@@ -38,10 +42,60 @@
 .header-icon svg {
   width: 50px;
   height: 50px;
+  transition: color 0.3s ease-in-out;
+}
+
+.header-icon:hover {
+  color: #1890ff
 }
 
 .header-content {
   text-align: start;
+}
+
+/* info */
+
+.info-title {
+  color: #4CAF50;
+  font-size: 43px;
+  /* margin-bottom: 20px; */
+}
+
+.info-title span {
+  border: 1px solid #4CAF50;
+  padding: 5px;
+}
+
+.info-modal {
+  border: 1px solid #4c4c4c;
+  box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+/* portfolio */
+.ant-modal-container {
+  text-align: center;
+}
+
+.ant-table-wrapper {
+  margin-bottom:  20px;
+}
+
+/* table  */
+
+.price-up{
+  color:#4CAF50
+}
+
+.price-down {
+  color: #e44a4a;
 }
 
 /* #center {

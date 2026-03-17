@@ -14,13 +14,19 @@ export const ModalPortfolio = () => {
   const modalData = useSelector(portfolioSelector);
   const dispatch = useDispatch();
 
-  const dataSource = modalData.map((item) => ({
-    key: item.modalData.id,
-    name: item.modalData.name,
-    price: parseFloat(item.modalData.priceUsd),
-    amount: item.total,
-    totalSum: parseFloat(item.modalData.priceUsd) * item.total,
-  }));
+  const dataSource = modalData
+    .filter((item) => item.modalData !== null)
+    .map((item) => ({
+      key: item.modalData?.id || item.findCrypt?.id,
+      name: item.modalData?.name || item.findCrypt?.name,
+      price:
+        parseFloat(item.modalData?.priceUsd) ||
+        parseFloat(item.findCrypt?.priceUsd),
+      amount: item.total,
+      totalSum:
+        (parseFloat(item.modalData?.priceUsd) ||
+          parseFloat(item.findCrypt?.priceUsd)) * item.total,
+    }));
 
   const result = dataSource
     .reduce((acc, item) => (acc += item.totalSum), 0)
@@ -68,7 +74,7 @@ export const ModalPortfolio = () => {
   ];
 
   return (
-    <>
+    <div className="portfolio">
       <Modal
         title={"Портфель"}
         open={isOpenPortfolio}
@@ -77,6 +83,7 @@ export const ModalPortfolio = () => {
         width={700}
       >
         <Table
+          style={{ cursor: "pointer" }}
           columns={columns}
           dataSource={dataSource}
           rowKey="id"
@@ -85,6 +92,6 @@ export const ModalPortfolio = () => {
 
         <p>Итого: {result} $</p>
       </Modal>
-    </>
+    </div>
   );
 };

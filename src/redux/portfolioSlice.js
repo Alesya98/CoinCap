@@ -12,7 +12,7 @@ const portfolioSlice = createSlice({
     },
     deleteTask: (state, action) => {
       state.tasks = state.tasks.filter((item) => {
-        return item.modalData.id !== action.payload;
+        return item.modalData && item.modalData.id !== action.payload;
       });
     },
     setResultPortfolio: (state, action) => {

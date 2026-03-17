@@ -5,18 +5,16 @@ import { useEffect } from "react";
 import { getInfoCoinCap } from "../api/ApiCoinCap";
 import { useDispatch, useSelector } from "react-redux";
 import { cionsSelector } from "../redux/coinsSlice";
-import { Spin } from 'antd';
+import { Spin } from "antd";
 import { openModal } from "../redux/modalSlice";
-import {ModalBuyCrypt} from '../components/ModalBuyCrypt'
+import { ModalBuyCrypt } from "../components/ModalBuyCrypt";
 import { ModalPortfolio } from "../components/ModalPortfolio";
 
 const TablePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const {items, loading} = useSelector(cionsSelector);
-  // console.log(items);
-
+  const { items, loading } = useSelector(cionsSelector);
 
   useEffect(() => {
     dispatch(getInfoCoinCap());
@@ -32,7 +30,7 @@ const TablePage = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      align: 'center',
+      align: "center",
       render: (text, record) => (
         <div
           style={{
@@ -57,7 +55,15 @@ const TablePage = () => {
       title: "Change(24Hr)",
       dataIndex: "changePercent24Hr",
       key: "changePercent24Hr",
-      render: (value) => (value ? `${parseFloat(value).toFixed(2)} $` : "-"),
+      render: (value) => {
+        const num = parseFloat(value).toFixed(2);
+        if (!num && num !== 0) return "-";
+        if (num === "-0.00") return "0.00";
+
+        const color = num < 0.0 ? "price-down" : "price-up";
+
+        return <span className={color}>{num}</span>;
+      },
     },
     {
       title: "Market Cap",
@@ -82,9 +88,7 @@ const TablePage = () => {
             style={{ color: "red", border: "none", cursor: "pointer" }}
             onClick={(e) => {
               e.stopPropagation();
-              // console.log("Клик по плюсу", record);
-             dispatch(openModal(record))
-              
+              dispatch(openModal(record));
             }}
           >
             <PlusOutlined />
@@ -96,15 +100,15 @@ const TablePage = () => {
 
   return (
     <>
-      <ModalPortfolio/>
-      <ModalBuyCrypt/>
+      <ModalPortfolio />
+      <ModalBuyCrypt />
       <Table
+        style={{ cursor: "pointer" }}
         dataSource={items}
         columns={columns}
         rowKey="id"
         onRow={(record) => ({
           onClick: () => {
-            // console.log("Клик по всей строке ", record.id);
             navigate(`/info/${record.id}`);
           },
         })}

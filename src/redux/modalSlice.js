@@ -1,34 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const modalSlice = createSlice({
-    name: 'modal',
-    initialState: {
-        isOpenPortfolio: false,
-        isOpen: false,
-        modalData: null
+  name: "modal",
+  initialState: {
+    isOpenPortfolio: false,
+    isOpen: false,
+    modalData: null,
+  },
+  reducers: {
+    openModal: (state, action) => {
+      state.isOpen = true;
+      state.modalData = action.payload;
     },
-    reducers: {
-        openModal: (state, action) => {
-            // console.log('action.type', action.type)
-            state.isOpen = true
-            state.modalData = action.payload
-        },
-        closeModal: (state) => {
-            state.isOpen = false
-            state.modalData = null
-        },
-        openPortfolio: (state) => {
-            state.isOpenPortfolio = true
-        },
-        closePortfolio: (state) => {
-            state.isOpenPortfolio = false
-        }
+    closeModal: (state) => {
+      state.isOpen = false;
+      state.modalData = null;
     },
-    selectors: {
-        modalSelector: (selector) => selector
-     }
-})
+    openPortfolio: (state) => {
+      state.isOpenPortfolio = true;
+    },
+    closePortfolio: (state) => {
+      state.isOpenPortfolio = false;
+    },
+  },
+  selectors: {
+    modalSelector: (selector) => selector,
+  },
+});
 
-export const { openModal, closeModal, openPortfolio, closePortfolio } = modalSlice.actions;
+export const { openModal, closeModal, openPortfolio, closePortfolio } =
+  modalSlice.actions;
 export const { modalSelector } = modalSlice.selectors;
 export default modalSlice.reducer;
