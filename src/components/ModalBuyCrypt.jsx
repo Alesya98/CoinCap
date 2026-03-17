@@ -9,8 +9,6 @@ export const ModalBuyCrypt = () => {
   const { isOpen, modalData } = useSelector(modalSelector);
   const [amount, setAmount] = useState("");
 
-  if(!modalData) return null
-
   const handleBuy = () => {
     if (amount > 0) {
       dispatсh(addTasks({ modalData, total: amount }));
@@ -23,7 +21,7 @@ export const ModalBuyCrypt = () => {
   return (
     <>
       <Modal
-        title={modalData.name}
+        title={modalData ? modalData.name : "Загрузка..."}
         open={isOpen}
         onCancel={() => dispatсh(closeModal())}
         footer={[
