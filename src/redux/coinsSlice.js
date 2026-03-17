@@ -23,13 +23,15 @@ const coinsSlice = createSlice({
       .addMatcher(
         (action) => action.type.endsWith("/pending"),
         (state) => {
-          ((state.loading = true), (state.error = false));
+          state.loading = true;
+          state.error = false;
         },
       )
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
         (state, action) => {
-          ((state.loading = false), (state.error = action.error.message));
+          state.loading = false;
+          state.error = action.error.message;
         },
       );
   },

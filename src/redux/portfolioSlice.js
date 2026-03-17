@@ -1,20 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const getLocalStorage = () => {
+  try {
+    const response = localStorage.getItem("my_coins");
+    return response ? JSON.parse(response) : []
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 const portfolioSlice = createSlice({
   name: "portfolio",
   initialState: {
-    tasks: JSON.parse(localStorage.getItem("my_coins")) || [],
+    tasks: getLocalStorage(),
     resultPortfolio: 0,
   },
   reducers: {
     addTasks: (state, action) => {
       const newTask = action.payload
-      console.log('action', action.payload)
-      console.log('newTask',newTask.modalData.id);
 
       const findTask = state.tasks.find(item => item.modalData.id === newTask.modalData.id)
 
-      console.log('findTask',findTask)
       if (findTask) {
         findTask.total += Number(newTask.total)
       } else {

@@ -6,14 +6,12 @@ import { IndexPage } from "./pages/IndexPage";
 
 function App() {
   return (
-    <>
       <Routes>
         <Route path="/" element={<IndexPage />}>
           <Route index element={<TablePage />} />
           <Route path="/info/:id" element={<InfoPage />} />
         </Route>
       </Routes>
-    </>
   );
 }
 
