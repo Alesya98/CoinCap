@@ -8,7 +8,21 @@ const portfolioSlice = createSlice({
   },
   reducers: {
     addTasks: (state, action) => {
-      state.tasks.push(action.payload);
+      const newTask = action.payload
+      console.log('action', action.payload)
+      console.log('newTask',newTask.modalData.id);
+
+      const findTask = state.tasks.find(item => item.modalData.id === newTask.modalData.id)
+
+      console.log('findTask',findTask)
+      if (findTask) {
+        findTask.total += Number(newTask.total)
+      } else {
+        state.tasks.push({
+          ...newTask,
+          total: Number(newTask.total),
+        });
+      }
     },
     deleteTask: (state, action) => {
       state.tasks = state.tasks.filter((item) => {

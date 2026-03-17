@@ -98,6 +98,28 @@ button {
   color: #e44a4a;
 }
 
+/* адаптив */
+@media (max-width: 400px) {
+  .header-list{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header-item {
+    position: relative;
+  }
+
+  .header-item:not(:last-child)::after {
+      content: "";
+        position: absolute;
+        bottom: 0;
+        left: center;
+        width: 50%;
+        height: 2px;
+        background-color: #4c4c4c;
+}
+}
+
 /* #center {
   display: flex;
   flex-direction: column;

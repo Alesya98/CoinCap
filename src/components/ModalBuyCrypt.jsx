@@ -21,7 +21,7 @@ export const ModalBuyCrypt = () => {
   return (
     <>
       <Modal
-        title={modalData ? `Купить ${modalData.name}` : "Загрузка..."}
+        title={modalData.name}
         open={isOpen}
         onCancel={() => dispatсh(closeModal())}
         footer={[

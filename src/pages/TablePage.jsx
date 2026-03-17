@@ -116,8 +116,8 @@ const TablePage = () => {
           placement: ["bottomCenter"],
         }}
         loading={loading && <Spin size="large" />}
+        scroll={{x:672}}
       />
-      ;
     </>
   );
 };

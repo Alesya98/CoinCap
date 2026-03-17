@@ -124,6 +124,7 @@ export const InfoPage = () => {
           pagination={false}
           rowKey="id"
           style={{ cursor: "pointer" }}
+          scroll={{ x: 672 }}
         />
         <IndexLineChart item={findCrypt} />
         <Button onClick={() => navigate("/")}>

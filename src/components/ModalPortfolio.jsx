@@ -88,7 +88,8 @@ export const ModalPortfolio = () => {
           dataSource={dataSource}
           rowKey="id"
           pagination={false}
-        ></Table>
+          scroll={{x: 450}}
+        />
 
         <p>Итого: {result} $</p>
       </Modal>
