@@ -9,6 +9,7 @@ import { Spin } from "antd";
 import { openModal } from "../redux/modalSlice";
 import { ModalBuyCrypt } from "../components/ModalBuyCrypt";
 import { ModalPortfolio } from "../components/ModalPortfolio";
+import { formatPriceInfo } from "../helpers/priceInfo";
 
 const TablePage = () => {
   const navigate = useNavigate();
@@ -56,11 +57,7 @@ const TablePage = () => {
       dataIndex: "changePercent24Hr",
       key: "changePercent24Hr",
       render: (value) => {
-        const num = parseFloat(value).toFixed(2);
-        if (!num && num !== 0) return "-";
-        if (num === "-0.00") return "0.00";
-
-        const color = num < 0.0 ? "price-down" : "price-up";
+        const { color, num}=formatPriceInfo(value)
 
         return <span className={color}>{num}</span>;
       },
